@@ -15,17 +15,18 @@ def say_ok(line) -> bool:
 
 
 def in_done(name):
-    with open("../data/DoneDiscord.txt", "r") as f:
+    with open("../data/DoneDiscord.txt", "r", encoding="utf8", errors='ignore') as f:
         return name in f.read().split("\n")
 
 
 def in_todo(name):
-    with open("../data/TodoDiscord.txt", "r") as f:
+    with open("../data/TodoDiscord.txt", "r", encoding="utf8", errors='ignore') as f:
         return name in f.read().split("\n")
 
 
 def get_games(bw):
     print(f"Starting test on {datetime.now()}")
+    bw.get('https://www.epicgames.com/store/fr/browse?sortBy=currentPrice&sortDir=ASC&priceTier=tierDiscouted&pageSize=30')
     sleep(2)
     bw.execute_script("window.scrollTo(0, 450)")
     target = bw.find_element_by_xpath("/html/body/div[1]/div/div[4]/main/div/div/div[3]/div/div/section/div/div/aside/div/div[3]/div[2]/div[6]/div/div")
@@ -40,7 +41,7 @@ def get_games(bw):
             name = get_name(txt)
             print(f"Ok for {name}")
             if not in_done(name) and not in_todo(name):
-                with open("../data/TodoDiscord.txt", "a") as f:
+                with open("../data/TodoDiscord.txt", "a", encoding="utf8", errors='ignore') as f:
                     f.write(name + "\n")
 
 
@@ -52,9 +53,7 @@ def main(bw):
 
 if __name__ == "__main__":
     def selenium_init():
-        binary = FirefoxBinary(r"C:\Program Files\Mozilla Firefox\firefox.exe")
-        browser = webdriver.Firefox(firefox_binary=binary)
-        browser.get('https://www.epicgames.com/store/fr/browse?sortBy=currentPrice&sortDir=ASC&priceTier=tierDiscouted&pageSize=30')
+        browser = webdriver.Firefox(executable_path="./geckodriver")
         return browser
     
     
