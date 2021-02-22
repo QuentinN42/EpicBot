@@ -28,20 +28,15 @@ def create_message(game):
 bot = Bot("!")
 
 
-@tasks.loop(seconds=6*60*60)
-async def loop():
+@bot.event
+async def on_ready():
+    print("Logged in !")
     print("test" + str(datetime.now()))
     for todo in read_todo():
         if todo != "":
             await bot.get_channel(secrets.channel).send(create_message(todo))
             add_done(todo)
     clear_todo()
-
-
-@bot.event
-async def on_ready():
-    print("Logged in !")
-    loop.start()
 
 
 print("Starting bot.")

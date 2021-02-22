@@ -46,9 +46,7 @@ def get_games(bw):
 
 
 def main(bw):
-    while True:
-        get_games(bw)
-        sleep(60*60)
+    get_games(bw)
 
 
 if __name__ == "__main__":
