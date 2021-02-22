@@ -1,3 +1,4 @@
+import sys
 from datetime import datetime
 
 from discord.ext.commands import Bot
@@ -36,6 +37,7 @@ async def on_ready():
             await bot.get_channel(secrets.channel).send(create_message(todo))
             add_done(todo)
     clear_todo()
+    sys.exit(0)
 
 
 print("Starting bot.")
