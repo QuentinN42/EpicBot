@@ -3,7 +3,7 @@ from discord.ext import tasks
 from datetime import datetime
 import asyncio
 
-from discord import secrets
+import secrets
 
 
 def read_todo():
