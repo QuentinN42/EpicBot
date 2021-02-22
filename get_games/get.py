@@ -53,6 +53,8 @@ if __name__ == "__main__":
     def selenium_init():
         browser = webdriver.Firefox(executable_path="./geckodriver")
         return browser
-    
-    
-    main(selenium_init())
+
+
+    browser = selenium_init()
+    main(browser)
+    browser.quit()
