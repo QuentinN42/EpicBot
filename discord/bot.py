@@ -1,9 +1,11 @@
+print("Before imports")
 from discord.ext.commands import Bot
 from discord.ext import tasks
 from datetime import datetime
 import asyncio
 
 import secrets
+print("Imports done")
 
 
 def read_todo():
@@ -25,26 +27,26 @@ def create_message(game):
     return f"<@&{secrets.role}> voici un nouveau jeu gratuit sur l'epic games store : {game}"
 
 
-def clear_done():
-    print(datetime.now())
-    
-    def jour(line):
-        t = line.split(" ")
-        t = t[0]
-        t = t.split("-")
-        jour = t[2]
-        print(jour, type(jour))
-
-    d = str(datetime.now())
-    jour(d)
-
-    jv = str("15")
-    print(jv, type(jv))
-    if jv == jour:
-        print("debut du clear de donediscord.txt")
-        with open("../data/DoneDiscord.txt", "w") as f:
-            f.write("")
-        print("fichier clear")
+# def clear_done():
+#     print(datetime.now())
+#
+#     def jour(line):
+#         t = line.split(" ")
+#         t = t[0]
+#         t = t.split("-")
+#         jour = t[2]
+#         print(jour, type(jour))
+#
+#     d = str(datetime.now())
+#     jour(d)
+#
+#     jv = str("15")
+#     print(jv, type(jv))
+#     if jv == jour:
+#         print("debut du clear de donediscord.txt")
+#         with open("../data/DoneDiscord.txt", "w") as f:
+#             f.write("")
+#         print("fichier clear")
 
 
 bot = Bot("!")
@@ -65,5 +67,5 @@ async def on_ready():
     print("Logged in !")
     loop.start()
 
-
+print("Starting bot.")
 bot.run(secrets.BOT_TOKEN)

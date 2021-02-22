@@ -25,17 +25,20 @@ def in_todo(name):
 
 
 def get_games(bw):
+    print(f"Starting test on {datetime.now()}")
     sleep(2)
-    target = bw.find_element_by_xpath("/html/body/div[1]/div/div[4]/main/div/div/div[3]/div/div/section/div/div/aside/div/div[3]/div[2]/div[6]/div/div")
     bw.execute_script("window.scrollTo(0, 450)")
+    target = bw.find_element_by_xpath("/html/body/div[1]/div/div[4]/main/div/div/div[3]/div/div/section/div/div/aside/div/div[3]/div[2]/div[6]/div/div")
     target.click()
     sleep(2)
+    print("On the discount page, checking games.")
     for col in range(1, 31):
-        xpath = "/html/body/div[1]/div/div[4]/main/div/div/div[3]/div/div/section/div/div/div/section/div/section/section/ul/li[" + str(
-            col) + "]/a/div/div\n"
+        print(f"Game {col} of 30")
+        xpath = f"/html/body/div[1]/div/div[4]/main/div/div/div[3]/div/div/section/div/div/div/section/div/section/section/ul/li[{col}]/a/div/div\n"
         txt = bw.find_element_by_xpath(xpath).text
         if say_ok(txt):
             name = get_name(txt)
+            print(f"Ok for {name}")
             if not in_done(name) and not in_todo(name):
                 with open("../data/TodoDiscord.txt", "a") as f:
                     f.write(name + "\n")
@@ -43,7 +46,6 @@ def get_games(bw):
 
 def main(bw):
     while True:
-        print("test" + str(datetime.now()))
         get_games(bw)
         sleep(60*60)
 

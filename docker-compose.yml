@@ -1,0 +1,16 @@
+version: "3.9"
+
+
+services:
+  discord:
+      build: discord
+      volumes:
+        - "data:/data"
+  selenium:
+      build: selenium
+      volumes:
+        - "data:/data"
+
+
+volumes:
+  data:
