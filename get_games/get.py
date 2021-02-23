@@ -55,7 +55,7 @@ if __name__ == "__main__":
         o.add_argument("--headless")
         o.add_argument("--no-sandbox")
         o.add_argument("--disable-dev-shm-usage")
-        browser = webdriver.Firefox(executable_path="./geckodriver")
+        browser = webdriver.Firefox(executable_path="./geckodriver", options=o)
         return browser
 
 
