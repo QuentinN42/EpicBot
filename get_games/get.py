@@ -1,5 +1,5 @@
 from selenium import webdriver
-from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
+from selenium.webdriver.firefox.options import Options
 from time import sleep
 from datetime import datetime
 
@@ -51,6 +51,10 @@ def main(bw):
 
 if __name__ == "__main__":
     def selenium_init():
+        o = Options()
+        o.add_argument("--headless")
+        o.add_argument("--no-sandbox")
+        o.add_argument("--disable-dev-shm-usage")
         browser = webdriver.Firefox(executable_path="./geckodriver")
         return browser
 
