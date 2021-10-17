@@ -3,3 +3,4 @@ data/
 *.log
 geckodriver
 logs
+__pycache__
