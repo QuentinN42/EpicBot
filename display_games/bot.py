@@ -1,10 +1,11 @@
 import sys
 from datetime import datetime
 
+import discord
+from discord import TextChannel
 from discord.ext.commands import Bot
-
+from discord.ext import tasks
 import secrets
-
 
 def read_todo():
     with open("../data/TodoDiscord.txt", "r", encoding="utf8", errors='ignore') as f:
@@ -32,12 +33,21 @@ bot = Bot("!")
 async def on_ready():
     print("Logged in !")
     print("test" + str(datetime.now()))
+
+    loop.start()
+
+@tasks.loop(hours=10.0)
+async def loop():
     for todo in read_todo():
         if todo != "":
-            await bot.get_channel(secrets.channel).send(create_message(todo))
+            channel = bot.get_channel(int(secrets.channel))
+            msg = create_message(todo)
+            await channel.send(msg)
             add_done(todo)
+
     clear_todo()
-    sys.exit(0)
+    print("Done")
+    await bot.close()
 
 
 print("Starting bot.")

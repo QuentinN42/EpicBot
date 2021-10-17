@@ -10,8 +10,8 @@ def get_name(line) -> str:
 
 
 def say_ok(line) -> bool:
-    tableau = line.split("\n")
-    return "Gratuit" in tableau[2]
+    # tableau = line.split("\n")
+    return "Gratuit" in line
 
 
 def in_done(name):
@@ -33,10 +33,16 @@ def get_games(bw):
     target.click()
     sleep(2)
     print("On the discount page, checking games.")
+    first_col = True
     for col in range(1, 31):
         print(f"Game {col} of 30")
-        xpath = f"/html/body/div[1]/div/div[4]/main/div/div/div[3]/div/div/section/div/div/div/section/div/section/section/ul/li[{col}]/a/div/div\n"
+        if first_col:
+            first_col=False
+            xpath = f"/html/body/div[1]/div/div[4]/main/div/div/div[3]/div/div/section/div/div/div/section/div/section/section/ul/li[{col}]"
+        else:
+            xpath = f"/html/body/div[1]/div/div[4]/main/div/div/div[3]/div/div/section/div/div/div/section/div/section/section/ul/li[{col}]"
         txt = bw.find_element_by_xpath(xpath).text
+        print(txt)
         if say_ok(txt):
             name = get_name(txt)
             print(f"Ok for {name}")
