@@ -7,6 +7,11 @@ from discord.ext.commands import Bot
 from discord.ext import tasks
 import secrets
 
+
+async def log(txt):
+    print(txt)
+    await bot.get_channel(int(secrets.log)).send(txt)
+
 def read_todo():
     with open("../data/TodoDiscord.txt", "r", encoding="utf8", errors='ignore') as f:
         return f.read().split("\n")
@@ -31,10 +36,10 @@ bot = Bot("!")
 
 @bot.event
 async def on_ready():
-    print("Logged in !")
-    print("test" + str(datetime.now()))
-
+    await log("Logged in !")
+    await log(str(datetime.now()))
     loop.start()
+
 
 @tasks.loop(hours=10.0)
 async def loop():
@@ -46,7 +51,7 @@ async def loop():
             add_done(todo)
 
     clear_todo()
-    print("Done")
+    await log("Done")
     await bot.close()
 
 
