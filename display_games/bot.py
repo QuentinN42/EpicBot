@@ -28,7 +28,7 @@ def add_done(todo):
 
 
 def create_message(game):
-    return f"<@&{secrets.role}> voici un nouveau jeu gratuit sur l'epic games store : {game}"
+    return f"<@&{secrets.role}> {game} est gratuit sur l'EpicGamesStore, profitez-en !"
 
 
 bot = Bot("!")
