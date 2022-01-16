@@ -112,6 +112,8 @@ async def Epic():
 
             if Done == False:
                 # print("Name : ", Name, "\nLink : ", Link, "\nDate : ", Date, "\nDone : ", str(Done), "\n")
+                if link == "https://www.epicgames.com/store/fr/p/":
+                    link = "https://www.epicgames.com/store/fr/free-games"
                 await message("Epic", Name, Link, EDayS)
 
                 c.insert(i, ";V")
