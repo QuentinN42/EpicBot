@@ -1,3 +1,2 @@
-0	*/6	*	*	*	${PWD}/display_games/run.sh
-0	*/6	*	*	*	${PWD}/get_games.sh
-0	0	1	*	*	${PWD}/clear_data.sh
+0	*/6	*	*	*	${PWD}/get_games/get_games.sh
+@reboot ¤${PWD}/BotPromo-Master/run.sh

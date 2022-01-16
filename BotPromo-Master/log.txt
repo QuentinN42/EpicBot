@@ -1,0 +1,7 @@
+importing lib
+Démarrage du bot le :  10 / 1 / 2022 à 17 h 31
+Démarrage du bot
+Le bot est connecté
+EpicBot#0619 : Bot en ligne
+10 / 1 / 2022 à 17 h 31
+/!\ Erreur de tache
